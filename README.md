@@ -10,6 +10,7 @@ Schnittstelle zur Auswertung der Luftdatensensoren und Darstellung der Feinstaub
 sudo apt install git python3.10 virtualenv nginx-full certbot python3-certbot-nginx
 git clone https://github.com/oklabflensburg/open-trees-map.git
 cd open-trees-map
+touch .env
 virtualenv venv
 . venv/bin/activate
 pip install -r requirements.txt
@@ -51,6 +52,15 @@ Restart=always
 
 [Install]
 WantedBy=multi-user.target
+```
+
+
+## Start Service
+
+```
+sudo systemctl start open-sensor-map-backend.service
+sudo systemctl status open-sensor-map-backend.service 
+sudo systemctl enable open-sensor-map-backend.service
 ```
 
 
@@ -107,7 +117,7 @@ server {
             add_header 'Access-Control-Allow-Headers' 'DNT,X-CustomHeader,Keep-Alive,User-Agent,X-Requested-With,If-Modified-Since,Cache-Control,Content-Type';
         }
 
-        proxy_pass http://localhost:5000;
+        proxy_pass http://localhost:8000;
         proxy_http_version 1.1;
         proxy_set_header Upgrade $http_upgrade;
         proxy_set_header Connection 'upgrade';
