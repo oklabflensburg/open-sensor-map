@@ -1,18 +1,17 @@
 #!./venv/bin/python
 
-from fastapi import FastAPI
+from fastapi import FastAPI, Request
 from pydantic import BaseModel
-
-
-class Row(BaseModel):
-    name: str
-    description: str | None = None
-    tax: float | None = None
-
 
 app = FastAPI()
 
 
-@app.post('/data/')
-async def insert_row(row: Row):
-    print(row)
+@app.post('/data')
+async def get_data(data: Request):
+    req = await data.json()
+    print(req)
+
+    return {
+        'status': 'SUCCESS',
+        'data': req
+    }
