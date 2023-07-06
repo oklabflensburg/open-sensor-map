@@ -146,3 +146,21 @@ sudo nginx -t
 sudo certbot
 sudo systemctl reload nginx.service
 ```
+
+
+## Start Application
+
+```
+uvicorn main:app --reload
+```
+
+```
+INFO:     Will watch for changes in these directories: ['/opt/git/open-sensor-map']
+INFO:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
+INFO:     Started reloader process [11954] using StatReload
+INFO:     Started server process [11956]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+{'esp8266id': '15221686', 'software_version': 'NRZ-2020-133', 'sensordatavalues': [{'value_type': 'SDS_P1', 'value': '6.18'}, {'value_type': 'SDS_P2', 'value': '1.67'}, {'value_type': 'BME280_temperature', 'value': '15.13'}, {'value_type': 'BME280_pressure', 'value': '101313.66'}, {'value_type': 'BME280_humidity', 'value': '74.93'}, {'value_type': 'samples', 'value': '5033673'}, {'value_type': 'min_micro', 'value': '28'}, {'value_type': 'max_micro', 'value': '20050'}, {'value_type': 'interval', 'value': '145000'}, {'value_type': 'signal', 'value': '-51'}]}
+INFO:     127.0.0.1:39326 - "POST /data/ HTTP/1.1" 200 OK
+```
